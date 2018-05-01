@@ -2,7 +2,7 @@
 
 Drop it allows one click inserts/uploads of photos among the thousands of photos available on <a href="https://unsplash.com">unsplash.com</a> without leaving the Gutenberg editor.
 
-# How to
+## How to
 
 After installing please run the following commands to make it work : 
 
