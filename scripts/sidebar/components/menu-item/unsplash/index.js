@@ -1,7 +1,7 @@
 import { PluginSidebarMoreMenuItem } from "@wordpress/editPost";
 import { __ } from "@wordpress/i18n";
 
-import Icon from "../icon";
+import Icon from "../../icon/unsplash";
 
 const MenuItem = () => (
   <PluginSidebarMoreMenuItem icon={<Icon borderless />} target="dropit-sidebar">

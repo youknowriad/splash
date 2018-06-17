@@ -1,7 +1,7 @@
 import { PluginSidebar } from "@wordpress/editPost";
 
-import PhotoList from "../photo-list";
-import Icon from "../icon";
+import PhotoList from "../../photo-list";
+import Icon from "../../icon/unsplash";
 
 const Sidebar = () => (
   <PluginSidebar

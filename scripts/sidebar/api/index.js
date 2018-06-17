@@ -1,8 +1,15 @@
 const clientId =
   "37fb1728bc4d17ee3bd799a37941e9dd031e8889e0ae316a4ffc461c13b78265";
 
+// TODO: production key ?
+const apiKey = "eZzJ2ixv8CTOOE9yvR0L4x9P0IUuG8gq";
+
 const toJson = response => response.json();
 
+
+/**
+ * UNSPLASH
+ */
 export const getPhotos = (page = 1) =>
   window
     .fetch(
@@ -41,3 +48,21 @@ export const downloadPhoto = (url, name, options) =>
       });
     })
     .then(blob => new window.File([blob], name + ".jpg", options));
+
+/**
+ * GIPHY.com
+ */
+export const getJifs = (offset = 0) =>
+ window
+  .fetch(
+   `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&offset=${offset}&limit=5&rating=G&sort=relevant`
+  )
+  .then(toJson);
+
+
+export const searchJifs = (search, offset = 0) =>
+ window
+  .fetch(
+   `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${search}&offset=${offset}&limit=5&rating=G&sort=relevant`
+  )
+  .then(toJson);
