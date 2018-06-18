@@ -12,20 +12,13 @@ const Dropit = () => (
   <Fragment>
     <SidebarUnsplash />
     <MenuItemUnsplash />
-  </Fragment>
-);
-
-registerPlugin("dropit", {
-  render: Dropit
-});
-
-const DropitGiphyPlugin = () => (
- <Fragment>
    <SidebarGiphy />
    <MenuItemGiphy />
  </Fragment>
 );
 
-registerPlugin("dropit-giphy", {
-  render: DropitGiphyPlugin
+
+registerPlugin("dropit", {
+  render: Dropit
 });
+
