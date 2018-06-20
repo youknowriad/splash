@@ -1,7 +1,6 @@
 const SPLASH_API_KEY =
   "37fb1728bc4d17ee3bd799a37941e9dd031e8889e0ae316a4ffc461c13b78265";
 
-// TODO: production key ?
 const GIPHY_API_KEY = "eZzJ2ixv8CTOOE9yvR0L4x9P0IUuG8gq";
 
 const toJson = response => response.json();
