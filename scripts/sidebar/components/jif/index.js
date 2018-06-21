@@ -43,7 +43,7 @@ class JifList extends Component {
               isPrimary
               icon="plus"
               onClick={this.addJif}
-              label={__("Add Jif", "dropit-giphy")}
+              label={__("Add Jif", "dropit")}
             />
           </div>
         )}
