@@ -1,31 +1,44 @@
 const SPLASH_API_KEY =
   "37fb1728bc4d17ee3bd799a37941e9dd031e8889e0ae316a4ffc461c13b78265";
 
-const GIPHY_API_KEY = "eZzJ2ixv8CTOOE9yvR0L4x9P0IUuG8gq";
-
 const toJson = response => response.json();
 
+const normalize = photo => {
+  return {
+    id: photo.id,
+    color: photo.color,
+    viewLink: photo.urls.regular,
+    thumbnailLink: photo.urls.small,
+    downloadLink: photo.links.download_location,
+    authorLink: `https://unsplash.com/@${
+      photo.user.username
+    }?utm_source=dropit&utm_medium=referral`,
+    authorName: photo.user.name,
+    siteLink: "https://unsplash.com/?utm_source=dropit&utm_medium=referral",
+    siteName: "Unsplash",
+    mimeType: "image/jpeg"
+  };
+};
 
-/**
- * UNSPLASH
- */
-export const getPhotos = (page = 1) =>
+export const all = (page = 1) =>
   window
     .fetch(
       `https://api.unsplash.com/photos/?client_id=${SPLASH_API_KEY}&per_page=20&page=${page}&order_by=latest`
     )
-    .then(toJson);
+    .then(toJson)
+    .then(photos => photos.map(normalize));
 
-export const searchPhotos = (search, page = 1) =>
+export const search = (search, page = 1) =>
   window
     .fetch(
       `https://api.unsplash.com/search/photos/?client_id=${SPLASH_API_KEY}&per_page=20&page=${page}&query=${search}`
     )
-    .then(toJson);
+    .then(toJson)
+    .then(data => data.results.map(normalize));
 
-export const downloadPhoto = (url, name, options) =>
+export const download = (url, name, options) =>
   window
-    .fetch(`${url}?client_id=${clientId}`)
+    .fetch(`${url}?client_id=${SPLASH_API_KEY}`)
     .then(toJson)
     .then(({ url }) => {
       return new Promise(resolve => {
@@ -47,21 +60,3 @@ export const downloadPhoto = (url, name, options) =>
       });
     })
     .then(blob => new window.File([blob], name + ".jpg", options));
-
-/**
- * GIPHY.com
- */
-export const getJifs = (offset = 0) =>
- window
-  .fetch(
-   `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&offset=${offset}&limit=5&rating=G&sort=relevant`
-  )
-  .then(toJson);
-
-
-export const searchJifs = (search, offset = 0) =>
- window
-  .fetch(
-   `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${search}&offset=${offset}&limit=5&rating=G&sort=relevant`
-  )
-  .then(toJson);

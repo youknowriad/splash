@@ -1,15 +1,16 @@
 import { PluginSidebar } from "@wordpress/editPost";
 
 import PhotoList from "../../photo-list";
-import Icon from "../../icon/unsplash";
+import Icon from "../../icon";
+import { search, all, download } from "../api";
 
 const Sidebar = () => (
   <PluginSidebar
-    icon={<Icon borderless />}
+    icon={<Icon borderless color="unsplash" />}
     name="dropit-sidebar"
-    title="Drop it: Unsplash.com"
+    title="Powered by Unsplash"
   >
-    <PhotoList />
+    <PhotoList api={{ search, all, download }} />
   </PluginSidebar>
 );
 
